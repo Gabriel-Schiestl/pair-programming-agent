@@ -3,7 +3,18 @@ import os
 
 @tool
 def get_directory_tree(path: str) -> str:
-    """Get the directory tree structure at the specified path."""
+    """Generate a visual tree representation of the directory structure at the specified path.
+
+    Recursively lists all files and subdirectories in a tree format using Unicode connectors.
+    Entries are sorted alphabetically for consistent output. Returns an error message if the
+    path does not exist or is not a directory. Useful for exploring and documenting project structures.
+
+    Args:
+        path (str): The full path to the directory to analyze.
+
+    Returns:
+        str: A multi-line string representing the directory tree, or an error message.
+    """
 
     def tree(dir_path, prefix=""):
         entries = sorted(os.listdir(dir_path))

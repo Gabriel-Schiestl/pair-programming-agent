@@ -3,14 +3,17 @@ import os
 
 @tool
 def create_file_and_insert_content(file_path: str, content: str) -> str:
-    """Create a file with the specified content.
+    """Create a new file at the specified path with the given content, creating parent directories if needed.
+
+    Overwrites the file if it already exists. Ensures the directory structure exists
+    before writing the file. Useful for generating code files, configuration files, or any text content.
 
     Args:
-        file_path (str): The full path where the file will be created containing the file name.
-        content (str): The content to write into the file.
+        file_path (str): The full path including filename where the file will be created.
+        content (str): The text content to write into the file.
 
     Returns:
-        str: A message indicating the file was created successfully.
+        str: A success message with the file path, or an error message if creation failed.
     """
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
