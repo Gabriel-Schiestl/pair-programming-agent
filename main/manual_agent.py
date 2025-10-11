@@ -3,6 +3,9 @@ from langgraph.graph import StateGraph
 from state import AgentState
 from langgraph.prebuilt import tools_condition
 from nodes import agent_node, change_directory_node
+from dotenv import load_dotenv
+
+load_dotenv()
 
 builder = StateGraph(AgentState)
 
