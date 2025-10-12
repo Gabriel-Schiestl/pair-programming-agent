@@ -13,7 +13,15 @@ def get_patterns(pattern: str, language: str) -> str:
         language (str): The programming language of the code pattern.
     """
     try:
-        results = vector_store.similarity_search(pattern, filter={"language": language}, k=3)
-        return "\n\n".join([str(result.page_content) for result in results])
+        results = vector_store.similarity_search(pattern, filter={"language": {"$eq": language.upper()}}, k=3)
+        def _get_content(res):
+            try:
+                return res.metadata.get("content_text") or res.page_content
+            except Exception:
+                return res.page_content
+
+        return "\n\n".join([str(_get_content(result)) for result in results])
     except Exception as e:
         return f"Error occurred: {e}"
+
+get_patterns("repository", "TS")
