@@ -32,6 +32,6 @@ def get_directory_tree(path: str) -> str:
             return f"Path does not exist: {path}"
         if not os.path.isdir(path):
             return f"Path is not a directory: {path}"
-        return "\n".join(tree(path))
+        return "\n".join(tree(path + '/src'))
     except Exception as e:
         return f"Error retrieving directory tree: {e}"

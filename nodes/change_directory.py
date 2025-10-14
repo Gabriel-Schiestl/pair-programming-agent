@@ -11,4 +11,4 @@ def change_directory_node(state: AgentState) -> dict:
             "current_directory": new_directory,
             "messages": [AIMessage(content=f"Directory changed to {new_directory}")]
         }
-    return state
+    return {}
